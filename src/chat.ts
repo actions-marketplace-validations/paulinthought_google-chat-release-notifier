@@ -34,6 +34,8 @@ export async function notify(name: string, url: string, status: Status, info: st
   const converter = new showdown.Converter();
   const infoHtml = converter.makeHtml(info).replace(/\r?\n|\r/g, "");
 
+  const md = `<markdown>${info}</markdown>`
+
   const body = {
     cards: [{
       sections: [
@@ -78,7 +80,7 @@ export async function notify(name: string, url: string, status: Status, info: st
         {
           widgets: [{
             textParagraph: {
-              text: `${infoHtml}`
+              text: `${md}`
           }
           }]
         }]

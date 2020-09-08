@@ -5452,6 +5452,7 @@ function notify(name, url, status, info) {
         const checksUrl = `${repoUrl}${eventPath}/checks`;
         const converter = new showdown_1.default.Converter();
         const infoHtml = converter.makeHtml(info).replace(/\r?\n|\r/g, "");
+        const md = `<markdown>${info}</markdown>`;
         const body = {
             cards: [{
                     sections: [
@@ -5496,7 +5497,7 @@ function notify(name, url, status, info) {
                         {
                             widgets: [{
                                     textParagraph: {
-                                        text: `${infoHtml}`
+                                        text: `${md}`
                                     }
                                 }]
                         }
