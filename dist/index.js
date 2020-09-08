@@ -5462,7 +5462,7 @@ function notify(name, url, status, info) {
     <meta name="author" content="Loylap">
   </head>
   <body>
-  <div>${infoHtml.replace(/\r?\n|\r/g, "")}</div>
+  <div>${infoHtml}</div>
   </body>
   </html>`;
         const body = {
@@ -5509,7 +5509,7 @@ function notify(name, url, status, info) {
                         {
                             widgets: [{
                                     textParagraph: {
-                                        text: `${htmlInfoOutput}`
+                                        text: `${htmlInfoOutput.replace(/\r?\n|\r/g, "")}`
                                     }
                                 }]
                         }

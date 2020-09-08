@@ -44,7 +44,7 @@ export async function notify(name: string, url: string, status: Status, info: st
     <meta name="author" content="Loylap">
   </head>
   <body>
-  <div>${infoHtml.replace(/\r?\n|\r/g, "")}</div>
+  <div>${infoHtml}</div>
   </body>
   </html>`;
 
@@ -92,7 +92,7 @@ export async function notify(name: string, url: string, status: Status, info: st
         {
           widgets: [{
             textParagraph: {
-              text: `${htmlInfoOutput}`
+              text: `${htmlInfoOutput.replace(/\r?\n|\r/g, "")}`
           }
           }]
         }]
