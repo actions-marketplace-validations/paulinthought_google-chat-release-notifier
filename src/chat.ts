@@ -73,7 +73,16 @@ export async function notify(name: string, url: string, status: Status, info: st
         }
       ]
     },
-    { text: `${infoHtml}` }]
+    {
+      sections: [
+        {
+          widgets: [{
+            textParagraph: {
+              text: `${infoHtml}`
+          }
+          }]
+        }]
+    }]
   };
 
   console.log('created card', body.cards[1])

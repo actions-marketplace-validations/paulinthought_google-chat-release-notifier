@@ -5491,7 +5491,17 @@ function notify(name, url, status, info) {
                         }
                     ]
                 },
-                { text: `${infoHtml}` }]
+                {
+                    sections: [
+                        {
+                            widgets: [{
+                                    textParagraph: {
+                                        text: `${infoHtml}`
+                                    }
+                                }]
+                        }
+                    ]
+                }]
         };
         console.log('created card', body.cards[1]);
         const response = yield axios.default.post(url, JSON.stringify(body));
