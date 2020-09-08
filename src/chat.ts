@@ -31,7 +31,8 @@ export async function notify(name: string, url: string, status: Status, info: st
   const eventUrl = `${repoUrl}${eventPath}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
   
-  const converter = new showdown.setFlavor('github').Converter();
+  showdown.setFlavor('github');
+  const converter = new showdown.Converter();
   const infoHtml = converter.makeHtml(info);
 
   const htmlInfoOutput = `<div>${infoHtml.replace(/\r?\n|\r/g, "")}</div>`

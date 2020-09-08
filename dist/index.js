@@ -5450,7 +5450,8 @@ function notify(name, url, status, info) {
         const eventPath = eventName === 'pull_request' ? `/pull/${number}` : `/commit/${sha}`;
         const eventUrl = `${repoUrl}${eventPath}`;
         const checksUrl = `${repoUrl}${eventPath}/checks`;
-        const converter = new showdown_1.default.setFlavor('github').Converter();
+        showdown_1.default.setFlavor('github');
+        const converter = new showdown_1.default.Converter();
         const infoHtml = converter.makeHtml(info);
         const htmlInfoOutput = `<div>${infoHtml.replace(/\r?\n|\r/g, "")}</div>`;
         const body = {
