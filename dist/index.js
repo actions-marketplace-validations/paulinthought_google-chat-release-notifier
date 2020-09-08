@@ -5451,7 +5451,7 @@ function notify(name, url, status, info) {
         const eventUrl = `${repoUrl}${eventPath}`;
         const checksUrl = `${repoUrl}${eventPath}/checks`;
         const converter = new showdown_1.default.Converter();
-        const infoHtml = converter.makeHtml(info);
+        const infoHtml = converter.makeHtml(info).replace(/\r?\n|\r/g, "");
         const body = {
             cards: [{
                     sections: [

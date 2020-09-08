@@ -32,7 +32,7 @@ export async function notify(name: string, url: string, status: Status, info: st
   const checksUrl = `${repoUrl}${eventPath}/checks`;
   
   const converter = new showdown.Converter();
-  const infoHtml = converter.makeHtml(info);
+  const infoHtml = converter.makeHtml(info).replace(/\r?\n|\r/g, "");
 
   const body = {
     cards: [{
