@@ -1,6 +1,7 @@
 import * as github from '@actions/github';
 import * as axios from 'axios';
 import { Status } from './status';
+import showdown from 'showdown';
 
 const statusColorPalette: { [key in Status]: string } = {
   success: "#2cbe4e",
@@ -29,6 +30,9 @@ export async function notify(name: string, url: string, status: Status, info: st
   const eventPath = eventName === 'pull_request' ? `/pull/${number}` : `/commit/${sha}`;
   const eventUrl = `${repoUrl}${eventPath}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
+  
+  const converter = new showdown.Converter();
+  const infoHtml = converter.makeHtml(info);
 
   const body = {
     cards: [{
@@ -66,15 +70,13 @@ export async function notify(name: string, url: string, status: Status, info: st
           widgets: [{
             buttons: [textButton("OPEN CHECKS", checksUrl)]
           }]
-        },
-        {
-          textParagraph: { text: `${info}` }
         }
       ]
-    }]
+    },
+    { text: `${infoHtml}` }]
   };
 
-  console.log('created card', body.cards[0].sections[3].textParagraph)
+  console.log('created card', body.cards[1])
   const response = await axios.default.post(url, JSON.stringify(body));
   if (response.status !== 200) {
     throw new Error(`Google Chat notification failed. response status=${response.status}. Status: ${response.statusText}`);
