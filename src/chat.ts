@@ -68,15 +68,14 @@ export async function notify(name: string, url: string, status: Status, info: st
           }]
         },
         {
-          textParagraph: `${JSON.stringify(info)}`
+          textParagraph: { text: `${JSON.stringify(info)}` }
         }
       ]
     }]
   };
 
-  console.log('received ', info, 'created card', body.cards)
   const response = await axios.default.post(url, body);
   if (response.status !== 200) {
-    throw new Error(`Google Chat notification failed. response status=${response.status}`);
+    throw new Error(`Google Chat notification failed. response status=${response.status}. Status: ${response.statusText}`);
   }
 }
