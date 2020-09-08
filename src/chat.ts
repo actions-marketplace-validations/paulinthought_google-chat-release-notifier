@@ -32,9 +32,9 @@ export async function notify(name: string, url: string, status: Status, info: st
   const checksUrl = `${repoUrl}${eventPath}/checks`;
   
   const converter = new showdown.Converter();
-  const infoHtml = converter.makeHtml(info).replace(/\r?\n|\r/g, "");
+  // const infoHtml = converter.makeHtml(info).replace(/\r?\n|\r/g, "");
 
-  const md = `<markdown>${info}</markdown>`
+  const md = `<markdown>${info.replace(/\r?\n|\r/g, "")}</markdown>`
 
   const body = {
     cards: [{
