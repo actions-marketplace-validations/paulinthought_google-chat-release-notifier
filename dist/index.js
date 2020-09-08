@@ -5462,7 +5462,7 @@ function notify(name, url, status, info) {
     <meta name="author" content="Loylap">
   </head>
   <body>
-  <div>${infoHtml.replace(/\r?\n|\r/g, "<br />")}</div>
+  <div>${infoHtml.replace(/\r?\n|\r/g, "")}</div>
   </body>
   </html>`;
         const body = {

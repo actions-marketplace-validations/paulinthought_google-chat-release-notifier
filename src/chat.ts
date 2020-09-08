@@ -44,7 +44,7 @@ export async function notify(name: string, url: string, status: Status, info: st
     <meta name="author" content="Loylap">
   </head>
   <body>
-  <div>${infoHtml.replace(/\r?\n|\r/g, "<br />")}</div>
+  <div>${infoHtml.replace(/\r?\n|\r/g, "")}</div>
   </body>
   </html>`;
 
