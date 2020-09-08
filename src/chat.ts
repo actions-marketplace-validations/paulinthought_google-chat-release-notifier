@@ -31,10 +31,10 @@ export async function notify(name: string, url: string, status: Status, info: st
   const eventUrl = `${repoUrl}${eventPath}`;
   const checksUrl = `${repoUrl}${eventPath}/checks`;
   
-  const converter = new showdown.Converter();
-  // const infoHtml = converter.makeHtml(info).replace(/\r?\n|\r/g, "");
+  const converter = new showdown.setFlavor('github').Converter();
+  const infoHtml = converter.makeHtml(info);
 
-  const md = `<markdown>${info.replace(/\r?\n|\r/g, "")}</markdown>`
+  const htmlInfoOutput = `<div>${infoHtml.replace(/\r?\n|\r/g, "")}</div>`
 
   const body = {
     cards: [{
@@ -80,7 +80,7 @@ export async function notify(name: string, url: string, status: Status, info: st
         {
           widgets: [{
             textParagraph: {
-              text: `${md}`
+              text: `${htmlInfoOutput}`
           }
           }]
         }]
