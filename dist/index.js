@@ -5453,7 +5453,18 @@ function notify(name, url, status, info) {
         showdown_1.default.setFlavor('github');
         const converter = new showdown_1.default.Converter();
         const infoHtml = converter.makeHtml(info);
-        const htmlInfoOutput = `<div>${infoHtml.replace(/\r?\n|\r/g, "")}</div>`;
+        const htmlInfoOutput = `<!doctype html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Release Info</title>
+    <meta name="description" content="Release Info">
+    <meta name="author" content="Loylap">
+  </head>
+  <body>
+  <div>${infoHtml.replace(/\r?\n|\r/g, "<br />")}</div>
+  </body>
+  </html>`;
         const body = {
             cards: [{
                     sections: [
