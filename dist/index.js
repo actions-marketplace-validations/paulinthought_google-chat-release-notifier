@@ -5484,11 +5484,12 @@ function notify(name, url, status, info) {
                                 }]
                         },
                         {
-                            textParagraph: `${info}`
+                            textParagraph: `${JSON.stringify(info)}`
                         }
                     ]
                 }]
         };
+        console.log('received ', info, 'created card', body.cards);
         const response = yield axios.default.post(url, body);
         if (response.status !== 200) {
             throw new Error(`Google Chat notification failed. response status=${response.status}`);
